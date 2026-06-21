@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "secondwindow.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -24,8 +25,13 @@ private slots:
     void on_x_but_clicked();
 
 
+    void on_pushButton_2_clicked();
+
+    void on_x_but_2_clicked();
+
 private:
     Ui::MainWindow *ui;
+    SecondWindow *sWindow;
     QPoint m_dragPosition;
 
 };

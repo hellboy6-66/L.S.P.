@@ -57,6 +57,63 @@
      <string>X</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>215</x>
+      <y>178</y>
+      <width>370</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Впервые ли вы на нашей платформе?</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="choice_but1">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>235</y>
+      <width>220</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Впервые(регистрация)</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>300</y>
+      <width>220</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Не впервые(вход)</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="x_but_2">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>5</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
