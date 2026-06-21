@@ -26,6 +26,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QPoint m_dragPosition;
 
 };
 

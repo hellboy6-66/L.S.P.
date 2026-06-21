@@ -2,8 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QMouseEvent>
 #include <QPoint>
-#include <cstdio> // IWYU pragma: keep
-
+#include <QWindow>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QWidget *emptyWidget = new QWidget(ui->centralwidget);
     emptyWidget->setGeometry(0, 0, 800, 40);
-    emptyWidget->setStyleSheet("background-color: red;");
+    emptyWidget->setStyleSheet("background-color: #383838;");
     emptyWidget->installEventFilter(this);
 
     ui->x_but->raise();
@@ -38,12 +37,15 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
     if (event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-
         if (mouseEvent->button() == Qt::LeftButton) {
-            int x = mouseEvent->position().x();
-            int y = mouseEvent->position().y();
-            printf("Клик на виджете: X = %d, Y = %d\n", x, y);
-            fflush(stdout);
+            m_dragPosition = mouseEvent->globalPosition().toPoint() - this->frameGeometry().topLeft();
+            return true;
+        }
+    }
+    else if (event->type() == QEvent::MouseMove) {
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+        if (this->windowHandle()) {
+            this->windowHandle()->startSystemMove();
             return true;
         }
     }

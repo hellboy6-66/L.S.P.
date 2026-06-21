@@ -47,10 +47,10 @@
    <widget class="QPushButton" name="x_but">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>0</y>
-      <width>40</width>
-      <height>40</height>
+      <x>765</x>
+      <y>5</y>
+      <width>30</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="text">
