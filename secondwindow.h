@@ -17,6 +17,8 @@ public:
 
 private:
     Ui::SecondWindow *ui;
+signals:
+    void windowClosed();
 };
 
 #endif // SECONDWINDOW_H

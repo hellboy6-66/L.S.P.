@@ -12,6 +12,8 @@ qt_add_executable(project
     mainwindow.h
     mainwindow.ui
     secondwindow.h secondwindow.cpp secondwindow.ui
+    thirdwindow.h thirdwindow.cpp thirdwindow.ui
+
 )
 
 qt_add_translations(

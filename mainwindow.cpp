@@ -11,7 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     sWindow = new SecondWindow();
-    this->setWindowFlags(this->windowFlags() & ~Qt::WindowMaximizeButtonHint);
+    tWindow = new ThirdWindow();
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowMaximizeButtonHint); //отключение кнопки свернуть
     setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
 
     QWidget *emptyWidget = new QWidget(ui->centralwidget);
@@ -20,8 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     emptyWidget->installEventFilter(this);
 
     ui->x_but->raise();
-
-
+    ui->minimize_but->raise();
 }
 
 MainWindow::~MainWindow()
@@ -29,12 +29,10 @@ MainWindow::~MainWindow()
     delete ui;
 
 }
-
 void MainWindow::on_x_but_clicked()
 {
     this->close();
 }
-
 bool MainWindow::eventFilter(QObject *watched, QEvent *event) // логика перетаскивания
 {
     if (event->type() == QEvent::MouseButtonPress) {
@@ -53,7 +51,6 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event) // логика п
     }
     return QMainWindow::eventFilter(watched, event);
 }
-
 void MainWindow::on_pushButton_2_clicked()
 {
     QString filePath = QFileDialog::getOpenFileName(this,
@@ -63,16 +60,19 @@ void MainWindow::on_pushButton_2_clicked()
 
     // Проверяем, выбрал ли пользователь файл (нажав "ОК")
     if (!filePath.isEmpty()) {
-        // Здесь вы можете использовать переменную filePath, например, для загрузки данных
-        // qInfo() << "Выбран файл:" << filePath;
+        sWindow->show();
+        sWindow->activateWindow();
+        this->hide();
     }
-    sWindow->show();
-    sWindow->activateWindow();
+
+}
+void MainWindow::on_choice_but1_clicked()
+{
+    tWindow->show();
+    tWindow->activateWindow();
     this->hide();
 }
-
-
-void MainWindow::on_x_but_2_clicked()
+void MainWindow::on_minimize_but_clicked()
 {
     this->showMinimized();
 }

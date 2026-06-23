@@ -101,7 +101,7 @@
      <string>Не впервые(вход)</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="x_but_2">
+   <widget class="QPushButton" name="minimize_but">
     <property name="geometry">
      <rect>
       <x>730</x>

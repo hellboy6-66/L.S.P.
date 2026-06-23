@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "secondwindow.h"
+#include "thirdwindow.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -23,15 +24,14 @@ protected:
 
 private slots:
     void on_x_but_clicked();
-
-
     void on_pushButton_2_clicked();
-
-    void on_x_but_2_clicked();
+    void on_choice_but1_clicked();
+    void on_minimize_but_clicked();
 
 private:
     Ui::MainWindow *ui;
     SecondWindow *sWindow;
+    ThirdWindow *tWindow;
     QPoint m_dragPosition;
 
 };
