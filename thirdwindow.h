@@ -24,6 +24,7 @@ signals:
 private slots:
     void on_but_x_clicked();
     void on_but_minimize_clicked();
+    void on_regist_but_clicked();
 };
 
 #endif // THIRDWINDOW_H

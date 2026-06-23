@@ -93,7 +93,7 @@
     <string>Муж.</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_2">
+  <widget class="QRadioButton" name="radio_female">
    <property name="geometry">
     <rect>
      <x>475</x>

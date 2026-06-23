@@ -3,6 +3,12 @@
 #include <QMouseEvent>
 #include <QPoint>
 #include <QWindow>
+#include <QRegularExpressionValidator>
+#include <QRegularExpression>
+#include <QMessageBox>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 ThirdWindow::ThirdWindow(QWidget *parent)
     : QWidget(parent)
@@ -19,6 +25,17 @@ ThirdWindow::ThirdWindow(QWidget *parent)
 
     ui->but_x->raise();
     ui->but_minimize->raise();
+
+    QRegularExpression rx("[a-zA-Zа-яА-ЯёЁ]*");
+    QValidator *validator = new QRegularExpressionValidator(rx, this);
+    ui->lineEdit_name->setValidator(validator);
+    ui->lineEdit_name->setMaxLength(15);
+
+    QRegularExpression ri("[1-9][0-9]{0,5}");
+    QRegularExpressionValidator *intvalidator = new QRegularExpressionValidator(ri, this);
+    ui->lineEdit_age->setValidator(intvalidator);
+    ui->lineEdit_age->setMaxLength(2);
+
 }
 
 ThirdWindow::~ThirdWindow()
@@ -54,4 +71,42 @@ bool ThirdWindow::eventFilter(QObject *watched, QEvent *event) // логика �
         }
     }
     return QWidget::eventFilter(watched, event);
+}
+void saveJson(QString input_name, QString input_age, QString input_sex) {
+    QJsonObject user_inf;
+    user_inf["name"] = input_name;
+    user_inf["age"] = input_age;
+    user_inf["sex"] = input_sex;
+
+    QJsonObject userObj;
+    userObj["user"] = user_inf;
+    QJsonDocument doc(userObj);
+    QFile file("config.json");
+    if (file.open(QIODevice::WriteOnly)) {
+        file.write(doc.toJson()); // Записываем в формате JSON
+        file.close();
+
+    }
+}
+void ThirdWindow::on_regist_but_clicked(){
+    QString nameInput = ui->lineEdit_name->text();
+    QString ageInput = ui->lineEdit_age->text();
+    if (nameInput == "" or ageInput == ""){
+        QMessageBox::warning(this,
+                             "Ошибка ввода",
+                             "Пожалуйста, введите имя и возраст.");
+        return;
+    }
+    QString selectedSex;
+    if (ui->radio_male->isChecked()){
+        selectedSex = "мужской";
+    } else if (ui->radio_female->isChecked()){
+        selectedSex = "женский";
+    } else {
+        QMessageBox::warning(this,
+                             "Ошибка выбора",
+                             "Пожалуйста, выберите хотя бы один вариант.");
+        return;
+    }
+    saveJson(nameInput, ageInput, selectedSex);
 }
