@@ -14,11 +14,16 @@ class ThirdWindow : public QWidget
 public:
     explicit ThirdWindow(QWidget *parent = nullptr);
     ~ThirdWindow();
-
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
 private:
     Ui::ThirdWindow *ui;
+    QPoint m_dragPosition;
 signals:
     void windowClosed();
+private slots:
+    void on_but_x_clicked();
+    void on_but_minimize_clicked();
 };
 
 #endif // THIRDWINDOW_H

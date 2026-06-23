@@ -85,7 +85,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Впервые(регистрация)</string>
+     <string>Да(регистрация)</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
@@ -98,7 +98,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Не впервые(вход)</string>
+     <string>Нет(вход)</string>
     </property>
    </widget>
    <widget class="QPushButton" name="minimize_but">
