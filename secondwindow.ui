@@ -6,13 +6,39 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>972</width>
+    <height>568</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>L.S.P.</string>
   </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>250</y>
+     <width>100</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>180</y>
+     <width>70</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -14,11 +14,13 @@ class SecondWindow : public QWidget
 public:
     explicit SecondWindow(QWidget *parent = nullptr);
     ~SecondWindow();
+protected:
+    void closeEvent(QCloseEvent *event) override;
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::SecondWindow *ui;
-signals:
-    void windowClosed();
 };
 
 #endif // SECONDWINDOW_H

@@ -9,6 +9,8 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QCloseEvent>
+#include <QApplication>
 
 ThirdWindow::ThirdWindow(QWidget *parent)
     : QWidget(parent)
@@ -72,18 +74,21 @@ bool ThirdWindow::eventFilter(QObject *watched, QEvent *event) // логика �
     }
     return QWidget::eventFilter(watched, event);
 }
-void saveJson(QString input_name, QString input_age, QString input_sex) {
+void saveJson(QString input_name, QString input_age, QString input_sex) { //регистрация - сохранение инфы в json
     QJsonObject user_inf;
     user_inf["name"] = input_name;
     user_inf["age"] = input_age;
     user_inf["sex"] = input_sex;
+    user_inf["level"] = "1";
+    user_inf["rank"] = "soldier";
+    user_inf["xp"] = "0";
 
     QJsonObject userObj;
     userObj["user"] = user_inf;
     QJsonDocument doc(userObj);
     QFile file("config.json");
     if (file.open(QIODevice::WriteOnly)) {
-        file.write(doc.toJson()); // Записываем в формате JSON
+        file.write(doc.toJson());
         file.close();
 
     }
@@ -109,4 +114,10 @@ void ThirdWindow::on_regist_but_clicked(){
         return;
     }
     saveJson(nameInput, ageInput, selectedSex);
+    this->hide();
+    emit backToMain();
+}
+void ThirdWindow::closeEvent(QCloseEvent *event) {
+    QApplication::quit();
+    event->accept();
 }

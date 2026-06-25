@@ -3,7 +3,6 @@
 #include <QMouseEvent>
 #include <QPoint>
 #include <QWindow>
-#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -53,21 +52,13 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event) // логика п
 }
 void MainWindow::on_pushButton_2_clicked()
 {
-    QString filePath = QFileDialog::getOpenFileName(this,
-                                                    tr("Открыть файл"),
-                                                    "C://",
-                                                    tr("Все файлы (*.*);;Текстовые файлы (*.txt)"));
-
-    // Проверяем, выбрал ли пользователь файл (нажав "ОК")
-    if (!filePath.isEmpty()) {
-        sWindow->show();
-        sWindow->activateWindow();
-        this->hide();
-    }
-
+    sWindow->show();
+    sWindow->activateWindow();
+    this->hide();
 }
 void MainWindow::on_choice_but1_clicked()
 {
+    connect(tWindow, &ThirdWindow::backToMain, this, &MainWindow::show);
     tWindow->show();
     tWindow->activateWindow();
     this->hide();
