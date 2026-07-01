@@ -8,13 +8,47 @@
 #include <QApplication>
 #include <QFileDialog>
 #include <QDebug>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QWidget>
+#include <QLabel>
 
 SecondWindow::SecondWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::SecondWindow)
 {
     ui->setupUi(this);
-    //bool login = false;
+
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setSpacing(0);
+
+    QWidget *topBar = new QWidget();
+    topBar->setFixedHeight(50);
+    topBar->setStyleSheet("background-color: #383838;");
+
+    QHBoxLayout *topLayout = new QHBoxLayout(topBar);
+    topLayout->setContentsMargins(10, 0, 10, 0);
+
+    QWidget *spacerWidget = new QWidget();
+    topLayout->addWidget(spacerWidget, 1);
+
+    label_name = new QLabel("Имя");
+    topLayout->addWidget(label_name);
+
+    QWidget *xp_bar = new QWidget();
+    xp_bar->setFixedSize(200, 10);
+    xp_bar->setStyleSheet("background-color: darkgray;");
+    topLayout->addWidget(xp_bar);
+
+    QWidget *xp_sum = new QWidget(xp_bar);
+    xp_sum->setFixedSize(100, 10);
+    xp_sum->setStyleSheet("background-color: green;");
+    xp_sum->move(0, 0);
+
+    mainLayout->addWidget(topBar);
+
+    mainLayout->addStretch();
 }
 
 SecondWindow::~SecondWindow()
@@ -25,7 +59,7 @@ void SecondWindow::closeEvent(QCloseEvent *event) {
     QApplication::quit();
     event->accept();
 }
-void readJsonFile(const QString &filePath) {
+void SecondWindow::readJsonFile(const QString &filePath) {
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Не удалось открыть файл!";
@@ -49,6 +83,7 @@ void readJsonFile(const QString &filePath) {
         QString sex = object["sex"].toString();
         int xp = object["xp"].toInt();
         qDebug() << "Имя:" << name;
+        label_name->setText(name);
         qDebug() << "Возраст:" << age;
 
     }

@@ -2,6 +2,7 @@
 #define SECONDWINDOW_H
 
 #include <QWidget>
+#include <QLabel>
 
 namespace Ui {
 class SecondWindow;
@@ -21,6 +22,8 @@ private slots:
 
 private:
     Ui::SecondWindow *ui;
+    QLabel *label_name;
+    void readJsonFile(const QString &filePath);
 };
 
 #endif // SECONDWINDOW_H
