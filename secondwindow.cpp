@@ -12,6 +12,7 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QLabel>
+#include <QPushButton>
 
 SecondWindow::SecondWindow(QWidget *parent)
     : QWidget(parent)
@@ -19,7 +20,7 @@ SecondWindow::SecondWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this); //дизайн верхней панели
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
 
@@ -48,7 +49,23 @@ SecondWindow::SecondWindow(QWidget *parent)
 
     mainLayout->addWidget(topBar);
 
-    mainLayout->addStretch();
+    mainLayout->addStretch(1);
+
+    //дизайн остального
+    QHBoxLayout *hLayout = new QHBoxLayout();
+    hLayout->addStretch(1);
+
+    QPushButton *button_select = new QPushButton("Выбрать", this);
+    connect(button_select, &QPushButton::clicked, this, &SecondWindow::onButtonSelectClicked);
+    hLayout->addWidget(button_select);
+
+    hLayout->addStretch(1);
+    mainLayout->addStretch(1);
+    mainLayout->addLayout(hLayout);
+    mainLayout->addStretch(1);
+
+    mainLayout->addLayout(hLayout);
+    mainLayout->addStretch(1);
 }
 
 SecondWindow::~SecondWindow()
@@ -88,19 +105,17 @@ void SecondWindow::readJsonFile(const QString &filePath) {
 
     }
 }
-void SecondWindow::on_pushButton_clicked()
-{
-
+void SecondWindow::onButtonSelectClicked() {
     QString filePath = QFileDialog::getOpenFileName(this,
-                                                    "Выберите файл",
-                                                    "",
-                                                    "All Files (*.*)");
+                                                   "Выберите файл",
+                                                   "",
+                                                   "All Files (*.*)");
     if (!filePath.isEmpty()) {
         readJsonFile(filePath);
         qDebug() << "Выбранный путь:" << filePath;
     } else {
-         return;
+        return;
     }
-
 }
+
 

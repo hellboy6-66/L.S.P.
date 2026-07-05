@@ -18,8 +18,7 @@ public:
 protected:
     void closeEvent(QCloseEvent *event) override;
 private slots:
-    void on_pushButton_clicked();
-
+    void onButtonSelectClicked();
 private:
     Ui::SecondWindow *ui;
     QLabel *label_name;
