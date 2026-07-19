@@ -14,11 +14,15 @@
 #include <QLabel>
 #include <QPushButton>
 
+
+
 SecondWindow::SecondWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::SecondWindow)
 {
     ui->setupUi(this);
+
+
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this); //дизайн верхней панели
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -42,8 +46,8 @@ SecondWindow::SecondWindow(QWidget *parent)
     xp_bar->setStyleSheet("background-color: darkgray;");
     topLayout->addWidget(xp_bar);
 
-    QWidget *xp_sum = new QWidget(xp_bar);
-    xp_sum->setFixedSize(100, 10);
+    xp_sum = new QWidget(xp_bar);
+    xp_sum->resize(100 , 10);
     xp_sum->setStyleSheet("background-color: green;");
     xp_sum->move(0, 0);
 
@@ -66,6 +70,7 @@ SecondWindow::SecondWindow(QWidget *parent)
 
     mainLayout->addLayout(hLayout);
     mainLayout->addStretch(1);
+
 }
 
 SecondWindow::~SecondWindow()
@@ -90,18 +95,22 @@ void SecondWindow::readJsonFile(const QString &filePath) {
     if (document.isObject()) {
         QJsonObject rootObject = document.object();
 
-        // 1. Достаем вложенный объект "user"
         QJsonObject object = rootObject["user"].toObject();
 
         QString name = object["name"].toString();
         int age = object["age"].toString().toInt();
-        QString level = object["level"].toString();
+        int level = object["level"].toString().toInt();
         QString  rank = object["rank"].toString();
         QString sex = object["sex"].toString();
-        int xp = object["xp"].toInt();
+        int xp = object["xp"].toString().toInt();
         qDebug() << "Имя:" << name;
         label_name->setText(name);
         qDebug() << "Возраст:" << age;
+        qDebug() << "Пол:" << sex;
+        qDebug() << "Ранг:" << rank;
+        int nowXp = xp % 100;
+        qDebug() << nowXp;
+        xp_sum->resize(nowXp * 2 , 10);
 
     }
 }

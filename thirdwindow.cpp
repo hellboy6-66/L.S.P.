@@ -81,7 +81,7 @@ void saveJson(QString input_name, QString input_age, QString input_sex) { //ре
     user_inf["sex"] = input_sex;
     user_inf["level"] = "1";
     user_inf["rank"] = "soldier";
-    user_inf["xp"] = "0";
+    user_inf["xp"] = "1115";
 
     QJsonObject userObj;
     userObj["user"] = user_inf;

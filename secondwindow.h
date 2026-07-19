@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QMap>
+#include <QGlobalStatic>
 
 namespace Ui {
 class SecondWindow;
@@ -22,7 +24,10 @@ private slots:
 private:
     Ui::SecondWindow *ui;
     QLabel *label_name;
+    QWidget *xp_sum;
     void readJsonFile(const QString &filePath);
+
+
 };
 
 #endif // SECONDWINDOW_H
